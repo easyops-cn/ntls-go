@@ -997,8 +997,6 @@ func encryptKey(key []byte, recipient *Certificate) ([]byte, error) {
 	return nil, ErrPKCS7UnsupportedAlgorithm
 }
 
-
-
 func PKCS7EncryptSM2(content []byte, recipients []*Certificate, mode int) ([]byte, error) {
 	var eci *encryptedContentInfo
 	var key []byte
@@ -1061,7 +1059,6 @@ func PKCS7EncryptSM2(content []byte, recipients []*Certificate, mode int) ([]byt
 
 	return asn1.Marshal(wrapper)
 }
-
 
 func encryptKeySM2(key []byte, recipient *Certificate, mode int) ([]byte, error) {
 	if pub := recipient.PublicKey.(*ecdsa.PublicKey); pub != nil {

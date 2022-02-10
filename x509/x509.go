@@ -2592,7 +2592,7 @@ func CreateRevocationList(rand io.Reader, template *RevocationList, issuer *Cert
 	if template.SignatureAlgorithm.isRSAPSS() {
 		signerOpts = &rsa.PSSOptions{
 			SaltLength: rsa.PSSSaltLengthEqualsHash,
-			Hash: crypto.Hash(hashFunc),
+			Hash:       crypto.Hash(hashFunc),
 		}
 	}
 

@@ -10,8 +10,8 @@ import "bytes"
 type certificateRequestMsgGM struct {
 	raw []byte
 
-	certificateTypes             []byte
-	certificateAuthorities       [][]byte
+	certificateTypes       []byte
+	certificateAuthorities [][]byte
 }
 
 func (m *certificateRequestMsgGM) equal(i interface{}) bool {
@@ -119,4 +119,3 @@ func (m *certificateRequestMsgGM) unmarshal(data []byte) bool {
 
 	return len(data) == 0
 }
-
