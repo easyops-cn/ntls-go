@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tjfoc/gmsm/x509"
+	"github.com/emmansun/gmsm/smx509"
 
 	"github.com/tjfoc/gmsm/gmtls"
 )
@@ -85,7 +85,7 @@ func ClientRun() {
 func gmClientRun() {
 
 	// 信任的根证书
-	certPool := x509.NewCertPool()
+	certPool := smx509.NewCertPool()
 	cacert, err := ioutil.ReadFile(SM2CaCertPath)
 	if err != nil {
 		log.Fatal(err)
@@ -126,7 +126,7 @@ func gmClientRun() {
 func gmGCMClientRun() {
 
 	// 信任的根证书
-	certPool := x509.NewCertPool()
+	certPool := smx509.NewCertPool()
 	cacert, err := ioutil.ReadFile(SM2CaCertPath)
 	if err != nil {
 		log.Fatal(err)

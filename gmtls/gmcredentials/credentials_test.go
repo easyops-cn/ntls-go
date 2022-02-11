@@ -8,11 +8,13 @@ import (
 	"testing"
 	"time"
 
+	"golang.org/x/net/context"
+
+	"github.com/emmansun/gmsm/smx509"
+	"google.golang.org/grpc"
+
 	"github.com/tjfoc/gmsm/gmtls"
 	"github.com/tjfoc/gmsm/gmtls/gmcredentials/echo"
-	"github.com/tjfoc/gmsm/x509"
-	"golang.org/x/net/context"
-	"google.golang.org/grpc"
 )
 
 const (
@@ -47,7 +49,7 @@ func serverRun() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	certPool := x509.NewCertPool()
+	certPool := smx509.NewCertPool()
 	cacert, err := ioutil.ReadFile(ca)
 	if err != nil {
 		log.Fatal(err)
@@ -76,7 +78,7 @@ func clientRun() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	certPool := x509.NewCertPool()
+	certPool := smx509.NewCertPool()
 	cacert, err := ioutil.ReadFile(ca)
 	if err != nil {
 		log.Fatal(err)

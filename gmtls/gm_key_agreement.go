@@ -9,15 +9,16 @@ import (
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/elliptic"
+	"crypto/rand"
 	"encoding/asn1"
 	"errors"
 	"io"
 	"math/big"
 
-	"github.com/tjfoc/gmsm/sm2"
-	"github.com/tjfoc/gmsm/x509"
-
 	"golang.org/x/crypto/curve25519"
+
+	"github.com/emmansun/gmsm/sm2"
+	"github.com/emmansun/gmsm/smx509"
 )
 
 //// hashForServerKeyExchange hashes the given slices and returns their digest
@@ -202,7 +203,7 @@ func (ka *ecdheKeyAgreementGM) processClientKeyExchange(config *Config, cert *Ce
 	//	return preMasterSecret, nil
 }
 
-func (ka *ecdheKeyAgreementGM) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *x509.Certificate, skx *serverKeyExchangeMsg) error {
+func (ka *ecdheKeyAgreementGM) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *smx509.Certificate, skx *serverKeyExchangeMsg) error {
 	if len(skx.key) < 4 {
 		return errServerKeyExchange
 	}
@@ -224,7 +225,7 @@ func (ka *ecdheKeyAgreementGM) processServerKeyExchange(config *Config, clientHe
 	}
 
 	//according to GMT0024, we don't care about
-	curve := sm2.P256Sm2()
+	curve := sm2.P256()
 	ka.x, ka.y = elliptic.Unmarshal(curve, publicKey) // Unmarshal also checks whether the given point is on the curve
 	if ka.x == nil {
 		return errServerKeyExchange
@@ -246,7 +247,7 @@ func (ka *ecdheKeyAgreementGM) processServerKeyExchange(config *Config, clientHe
 	return verifyHandshakeSignature(sigType, cert.PublicKey, hashFunc, digest, sig)
 }
 
-func (ka *ecdheKeyAgreementGM) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *x509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
+func (ka *ecdheKeyAgreementGM) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *smx509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
 	if ka.curveid == 0 {
 		return nil, nil, errors.New("tls: missing ServerKeyExchange message")
 	}
@@ -306,7 +307,7 @@ type eccKeyAgreementGM struct {
 	x, y *big.Int
 
 	//cert for encipher referred to GMT0024
-	encipherCert *x509.Certificate
+	encipherCert *smx509.Certificate
 }
 
 func (ka *eccKeyAgreementGM) generateServerKeyExchange(config *Config, signCert, cipherCert *Certificate,
@@ -319,7 +320,9 @@ func (ka *eccKeyAgreementGM) generateServerKeyExchange(config *Config, signCert,
 	if !ok {
 		return nil, errors.New("tls: certificate private key does not implement crypto.Signer")
 	}
-	sig, err := priv.Sign(config.rand(), digest, nil)
+	// TODO: SignerOpts
+	signOpts := sm2.NewSM2SignerOption(true, nil)
+	sig, err := priv.Sign(config.rand(), digest, signOpts)
 	if err != nil {
 		return nil, err
 	}
@@ -346,16 +349,13 @@ func (ka *eccKeyAgreementGM) processClientKeyExchange(config *Config, cert *Cert
 
 	cipher := ckx.ciphertext[2:]
 
-	decrypter, ok := cert.PrivateKey.(crypto.Decrypter)
+	// TODO
+	decrypter, ok := cert.PrivateKey.(*sm2.PrivateKey)
 	if !ok {
 		return nil, errors.New("tls: certificate private key does not implement crypto.Decrypter")
 	}
 
-	cipher, err := sm2.CipherUnmarshal(cipher)
-	if err != nil {
-		return nil, err
-	}
-	plain, err := decrypter.Decrypt(config.rand(), cipher, nil)
+	plain, err := decrypter.Decrypt(config.rand(), cipher, &sm2.DecrypterOpts{CiphertextEncoding: sm2.ENCODING_ASN1, CipherTextSplicingOrder: sm2.C1C2C3})
 	if err != nil {
 		return nil, err
 	}
@@ -368,7 +368,7 @@ func (ka *eccKeyAgreementGM) processClientKeyExchange(config *Config, cert *Cert
 	return plain, nil
 }
 
-func (ka *eccKeyAgreementGM) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *x509.Certificate, skx *serverKeyExchangeMsg) error {
+func (ka *eccKeyAgreementGM) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *smx509.Certificate, skx *serverKeyExchangeMsg) error {
 	if len(skx.key) <= 2 {
 		return errServerKeyExchange
 	}
@@ -383,7 +383,7 @@ func (ka *eccKeyAgreementGM) processServerKeyExchange(config *Config, clientHell
 
 	//verify
 	pubKey, _ := cert.PublicKey.(*ecdsa.PublicKey)
-	if pubKey.Curve != sm2.P256Sm2() {
+	if pubKey.Curve != sm2.P256() {
 		return errors.New("tls: sm2 signing requires a sm2 public key")
 	}
 
@@ -393,19 +393,13 @@ func (ka *eccKeyAgreementGM) processServerKeyExchange(config *Config, clientHell
 		return err
 	}
 	if len(rest) != 0 {
-		return errors.New("tls:processServerKeyExchange: sm2 get signature failed")
+		return errors.New("tls: processServerKeyExchange: sm2 get signature failed")
 	}
 	if ecdsaSig.R.Sign() <= 0 || ecdsaSig.S.Sign() <= 0 {
 		return errors.New("tls: processServerKeyExchange: sm2 signature contained zero or negative values")
 	}
 
-	sm2PubKey := sm2.PublicKey{
-		Curve: pubKey.Curve,
-		X:     pubKey.X,
-		Y:     pubKey.Y,
-	}
-
-	if !sm2PubKey.Verify(digest, sig) {
+	if !sm2.VerifyWithSM2(pubKey, nil, digest, ecdsaSig.R, ecdsaSig.S) {
 		return errors.New("tls: processServerKeyExchange: sm2 verification failure")
 	}
 
@@ -423,7 +417,7 @@ func (ka *eccKeyAgreementGM) hashForServerKeyExchange(slices ...[]byte) []byte {
 	return buffer.Bytes()
 }
 
-func (ka *eccKeyAgreementGM) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *x509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
+func (ka *eccKeyAgreementGM) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *smx509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
 	preMasterSecret := make([]byte, 48)
 	preMasterSecret[0] = byte(clientHello.vers >> 8)
 	preMasterSecret[1] = byte(clientHello.vers)
@@ -432,13 +426,9 @@ func (ka *eccKeyAgreementGM) generateClientKeyExchange(config *Config, clientHel
 		return nil, nil, err
 	}
 	pubKey := ka.encipherCert.PublicKey.(*ecdsa.PublicKey)
-	sm2PubKey := &sm2.PublicKey{Curve: pubKey.Curve, X: pubKey.X, Y: pubKey.Y}
-	encrypted, err := sm2.Encrypt(sm2PubKey, preMasterSecret, config.rand(), sm2.C1C3C2)
-	if err != nil {
-		return nil, nil, err
-	}
+
 	// GMT0024 通信时密文采用 GMT009 ASN1方式组织
-	encrypted, err = sm2.CipherMarshal(encrypted)
+	encrypted, err := sm2.EncryptASN1(rand.Reader, pubKey, preMasterSecret)
 	if err != nil {
 		return nil, nil, err
 	}
