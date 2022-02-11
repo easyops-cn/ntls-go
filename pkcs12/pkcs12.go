@@ -23,7 +23,7 @@ import (
 	"io/ioutil"
 
 	"github.com/tjfoc/gmsm/sm2"
-	x "github.com/tjfoc/gmsm/x509"
+	x "github.com/tjfoc/gmsm/internal/smx509"
 )
 
 var (

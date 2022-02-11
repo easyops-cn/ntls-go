@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 
 	"github.com/tjfoc/gmsm/gmtls"
-	"github.com/tjfoc/gmsm/x509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 )
 
 const (

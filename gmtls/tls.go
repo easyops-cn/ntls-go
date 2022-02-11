@@ -30,7 +30,7 @@ import (
 	"time"
 
 	"github.com/tjfoc/gmsm/sm2"
-	X "github.com/tjfoc/gmsm/x509"
+	X "github.com/tjfoc/gmsm/internal/smx509"
 )
 
 // Server returns a new TLS server side connection

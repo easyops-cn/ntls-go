@@ -19,7 +19,7 @@ import (
 
 	"github.com/tjfoc/gmsm/sm2"
 	"github.com/tjfoc/gmsm/sm3"
-	"github.com/tjfoc/gmsm/x509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 )
 
 const VersionGMSSL = 0x0101 // GM/T 0024-2014
