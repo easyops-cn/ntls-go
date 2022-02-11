@@ -1,4 +1,4 @@
-package x509
+package smx509
 
 import (
 	"bytes"

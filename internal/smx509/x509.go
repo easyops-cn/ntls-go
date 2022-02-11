@@ -14,7 +14,7 @@ limitations under the License.
 */
 
 // crypto/x509 add sm2 support
-package x509
+package smx509
 
 import (
 	"bytes"
