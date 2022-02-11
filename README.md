@@ -3,7 +3,7 @@
 GM SM2/3/4 library based on Golang
 =======
 
-[![Build Status](https://travis-ci.com/tjfoc/gmsm.svg?branch=master)](https://travis-ci.com/github/tjfoc/gmsm)
+[![Go](https://github.com/easyops-cn/ntls-go/actions/workflows/go.yml/badge.svg)](https://github.com/easyops-cn/ntls-go/actions/workflows/go.yml)
 
 
 ## Feature
