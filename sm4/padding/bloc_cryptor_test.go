@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/tjfoc/gmsm/sm4"
+	"github.com/emmansun/gmsm/sm4"
 )
 
 func TestP7BlockDecrypt(t *testing.T) {
