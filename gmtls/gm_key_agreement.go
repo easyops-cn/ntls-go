@@ -14,7 +14,7 @@ import (
 	"io"
 	"math/big"
 
-	x509 "github.com/tjfoc/gmsm/internal/smx509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 	"github.com/tjfoc/gmsm/sm2"
 
 	"golang.org/x/crypto/curve25519"
@@ -202,7 +202,7 @@ func (ka *ecdheKeyAgreementGM) processClientKeyExchange(config *Config, cert *Ce
 	//	return preMasterSecret, nil
 }
 
-func (ka *ecdheKeyAgreementGM) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *x509.Certificate, skx *serverKeyExchangeMsg) error {
+func (ka *ecdheKeyAgreementGM) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *smx509.Certificate, skx *serverKeyExchangeMsg) error {
 	if len(skx.key) < 4 {
 		return errServerKeyExchange
 	}
@@ -246,7 +246,7 @@ func (ka *ecdheKeyAgreementGM) processServerKeyExchange(config *Config, clientHe
 	return verifyHandshakeSignature(sigType, cert.PublicKey, hashFunc, digest, sig)
 }
 
-func (ka *ecdheKeyAgreementGM) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *x509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
+func (ka *ecdheKeyAgreementGM) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *smx509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
 	if ka.curveid == 0 {
 		return nil, nil, errors.New("tls: missing ServerKeyExchange message")
 	}
@@ -306,7 +306,7 @@ type eccKeyAgreementGM struct {
 	x, y *big.Int
 
 	//cert for encipher referred to GMT0024
-	encipherCert *x509.Certificate
+	encipherCert *smx509.Certificate
 }
 
 func (ka *eccKeyAgreementGM) generateServerKeyExchange(config *Config, signCert, cipherCert *Certificate,
@@ -368,7 +368,7 @@ func (ka *eccKeyAgreementGM) processClientKeyExchange(config *Config, cert *Cert
 	return plain, nil
 }
 
-func (ka *eccKeyAgreementGM) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *x509.Certificate, skx *serverKeyExchangeMsg) error {
+func (ka *eccKeyAgreementGM) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *smx509.Certificate, skx *serverKeyExchangeMsg) error {
 	if len(skx.key) <= 2 {
 		return errServerKeyExchange
 	}
@@ -423,7 +423,7 @@ func (ka *eccKeyAgreementGM) hashForServerKeyExchange(slices ...[]byte) []byte {
 	return buffer.Bytes()
 }
 
-func (ka *eccKeyAgreementGM) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *x509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
+func (ka *eccKeyAgreementGM) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *smx509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
 	preMasterSecret := make([]byte, 48)
 	preMasterSecret[0] = byte(clientHello.vers >> 8)
 	preMasterSecret[1] = byte(clientHello.vers)

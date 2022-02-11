@@ -21,12 +21,12 @@ import (
 	"net/http"
 	"time"
 
-	x509 "github.com/tjfoc/gmsm/internal/smx509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 )
 
 // NewHTTPSClient 创建国密HTTPS客户端，只对服务端进行身份认证（验证服务端证书）。
 // pool: 根证书链
-func NewHTTPSClient(pool *x509.CertPool) *http.Client {
+func NewHTTPSClient(pool *smx509.CertPool) *http.Client {
 	return &http.Client{
 		Transport: NewSimpleRoundTripper(&Config{
 			GMSupport: &GMSupport{},
@@ -39,7 +39,7 @@ func NewHTTPSClient(pool *x509.CertPool) *http.Client {
 //
 // pool: 根证书链
 // clientAuthCert: 客户端认证密钥对和证书
-func NewAuthHTTPSClient(pool *x509.CertPool, clientAuthCert *Certificate) *http.Client {
+func NewAuthHTTPSClient(pool *smx509.CertPool, clientAuthCert *Certificate) *http.Client {
 	return &http.Client{
 		Transport: NewSimpleRoundTripper(&Config{
 			GMSupport:    &GMSupport{},

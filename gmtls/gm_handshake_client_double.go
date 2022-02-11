@@ -16,7 +16,7 @@ import (
 	"strconv"
 	"sync/atomic"
 
-	x509 "github.com/tjfoc/gmsm/internal/smx509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 	"github.com/tjfoc/gmsm/sm2"
 )
 
@@ -193,9 +193,9 @@ func (hs *clientHandshakeStateGM) doFullHandshake() error {
 	if c.handshakes == 0 {
 		// If this is the first handshake on a connection, process and
 		// (optionally) verify the server's certificates.
-		certs := make([]*x509.Certificate, len(certMsg.certificates))
+		certs := make([]*smx509.Certificate, len(certMsg.certificates))
 		for i, asn1Data := range certMsg.certificates {
-			cert, err := x509.ParseCertificate(asn1Data)
+			cert, err := smx509.ParseCertificate(asn1Data)
 			if err != nil {
 				c.sendAlert(alertBadCertificate)
 				return errors.New("tls: failed to parse certificate from server: " + err.Error())
@@ -211,12 +211,12 @@ func (hs *clientHandshakeStateGM) doFullHandshake() error {
 			//check key usage
 			switch i {
 			case 0:
-				if cert.KeyUsage == 0 || (cert.KeyUsage&(x509.KeyUsageDigitalSignature|cert.KeyUsage&x509.KeyUsageContentCommitment)) == 0 {
+				if cert.KeyUsage == 0 || (cert.KeyUsage&(smx509.KeyUsageDigitalSignature|cert.KeyUsage&smx509.KeyUsageContentCommitment)) == 0 {
 					c.sendAlert(alertInsufficientSecurity)
 					return fmt.Errorf("tls: the keyusage of cert[0] does not exist or is not for KeyUsageDigitalSignature/KeyUsageContentCommitment, value:%d", cert.KeyUsage)
 				}
 			case 1:
-				if cert.KeyUsage == 0 || (cert.KeyUsage&(x509.KeyUsageDataEncipherment|x509.KeyUsageKeyEncipherment|x509.KeyUsageKeyAgreement)) == 0 {
+				if cert.KeyUsage == 0 || (cert.KeyUsage&(smx509.KeyUsageDataEncipherment|smx509.KeyUsageKeyEncipherment|smx509.KeyUsageKeyAgreement)) == 0 {
 					c.sendAlert(alertInsufficientSecurity)
 					return fmt.Errorf("tls: the keyusage of cert[1] does not exist or is not for KeyUsageDataEncipherment/KeyUsageKeyEncipherment/KeyUsageKeyAgreement, value:%d", cert.KeyUsage)
 				}
@@ -226,14 +226,14 @@ func (hs *clientHandshakeStateGM) doFullHandshake() error {
 		}
 
 		if !c.config.InsecureSkipVerify {
-			opts := x509.VerifyOptions{
+			opts := smx509.VerifyOptions{
 				Roots:         c.config.RootCAs,
 				CurrentTime:   c.config.time(),
 				DNSName:       c.config.ServerName,
-				Intermediates: x509.NewCertPool(),
+				Intermediates: smx509.NewCertPool(),
 			}
 			if opts.Roots == nil {
-				opts.Roots = x509.NewCertPool()
+				opts.Roots = smx509.NewCertPool()
 			}
 
 			for _, rootca := range getCAs() {
@@ -629,7 +629,7 @@ findCert:
 			// node, or if chain.Leaf was nil
 			if j != 0 || x509Cert == nil {
 				var err error
-				if x509Cert, err = x509.ParseCertificate(cert); err != nil {
+				if x509Cert, err = smx509.ParseCertificate(cert); err != nil {
 					c.sendAlert(alertInternalError)
 					return nil, errors.New("tls: failed to parse client certificate #" + strconv.Itoa(i) + ": " + err.Error())
 				}
@@ -637,7 +637,7 @@ findCert:
 
 			var isGMCert bool
 
-			if x509Cert.PublicKeyAlgorithm == x509.ECDSA {
+			if x509Cert.PublicKeyAlgorithm == smx509.ECDSA {
 				pubKey, ok := x509Cert.PublicKey.(*ecdsa.PublicKey)
 				if ok && pubKey.Curve == sm2.P256Sm2() {
 					isGMCert = true

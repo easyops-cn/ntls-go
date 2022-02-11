@@ -17,7 +17,7 @@ import (
 	"io"
 	"sync/atomic"
 
-	x509 "github.com/tjfoc/gmsm/internal/smx509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 	"github.com/tjfoc/gmsm/sm2"
 )
 
@@ -658,21 +658,21 @@ func (hs *serverHandshakeStateGM) processCertsFromClient(certificates [][]byte) 
 	c := hs.c
 
 	hs.certsFromClient = certificates
-	certs := make([]*x509.Certificate, len(certificates))
+	certs := make([]*smx509.Certificate, len(certificates))
 	var err error
 	for i, asn1Data := range certificates {
-		if certs[i], err = x509.ParseCertificate(asn1Data); err != nil {
+		if certs[i], err = smx509.ParseCertificate(asn1Data); err != nil {
 			c.sendAlert(alertBadCertificate)
 			return nil, errors.New("tls: failed to parse client certificate: " + err.Error())
 		}
 	}
 
 	if c.config.ClientAuth >= VerifyClientCertIfGiven && len(certs) > 0 {
-		opts := x509.VerifyOptions{
+		opts := smx509.VerifyOptions{
 			Roots:         c.config.ClientCAs,
 			CurrentTime:   c.config.time(),
-			Intermediates: x509.NewCertPool(),
-			KeyUsages:     []x509.ExtKeyUsage{x509.ExtKeyUsageClientAuth},
+			Intermediates: smx509.NewCertPool(),
+			KeyUsages:     []smx509.ExtKeyUsage{smx509.ExtKeyUsageClientAuth},
 		}
 
 		for _, cert := range certs[1:] {

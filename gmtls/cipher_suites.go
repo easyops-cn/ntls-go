@@ -25,7 +25,7 @@ import (
 	"crypto/sha256"
 	"hash"
 
-	x509 "github.com/tjfoc/gmsm/internal/smx509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 
 	"golang.org/x/crypto/chacha20poly1305"
 )
@@ -45,8 +45,8 @@ type keyAgreement interface {
 
 	// This method may not be called if the server doesn't send a
 	// ServerKeyExchange message.
-	processServerKeyExchange(*Config, *clientHelloMsg, *serverHelloMsg, *x509.Certificate, *serverKeyExchangeMsg) error
-	generateClientKeyExchange(*Config, *clientHelloMsg, *x509.Certificate) ([]byte, *clientKeyExchangeMsg, error)
+	processServerKeyExchange(*Config, *clientHelloMsg, *serverHelloMsg, *smx509.Certificate, *serverKeyExchangeMsg) error
+	generateClientKeyExchange(*Config, *clientHelloMsg, *smx509.Certificate) ([]byte, *clientKeyExchangeMsg, error)
 }
 
 const (

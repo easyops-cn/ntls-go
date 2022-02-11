@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	x509 "github.com/tjfoc/gmsm/internal/smx509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 )
 
 var _ExpectRawContent = []byte("Hello World!")
@@ -80,7 +80,7 @@ func bootGMAuthHTTPSServer(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	certPool := x509.NewCertPool()
+	certPool := smx509.NewCertPool()
 	cacert, err := ioutil.ReadFile("websvr/certs/SM2_CA.cer")
 	if err != nil {
 		t.Fatal(err)
@@ -206,9 +206,9 @@ func createClientGMTLSConfig(keyPath string, certPath string, caPaths []string) 
 		cfg.Certificates = append(cfg.Certificates, cert)
 	}
 
-	var pool *x509.CertPool = nil
+	var pool *smx509.CertPool = nil
 	if len(caPaths) > 0 {
-		pool = x509.NewCertPool()
+		pool = smx509.NewCertPool()
 		for _, certPath := range caPaths {
 			caCrt, err := ioutil.ReadFile(certPath)
 			if err != nil {

@@ -19,7 +19,7 @@ import (
 	"strconv"
 	"sync/atomic"
 
-	x509 "github.com/tjfoc/gmsm/internal/smx509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 	"github.com/tjfoc/gmsm/sm2"
 )
 
@@ -195,9 +195,9 @@ func (hs *clientHandshakeStateGM) doFullHandshake() error {
 	if c.handshakes == 0 {
 		// If this is the first handshake on a connection, process and
 		// (optionally) verify the server's certificates.
-		certs := make([]*x509.Certificate, len(certMsg.certificates))
+		certs := make([]*smx509.Certificate, len(certMsg.certificates))
 		for i, asn1Data := range certMsg.certificates {
-			cert, err := x509.ParseCertificate(asn1Data)
+			cert, err := smx509.ParseCertificate(asn1Data)
 			if err != nil {
 				c.sendAlert(alertBadCertificate)
 				return errors.New("tls: failed to parse certificate from server: " + err.Error())
@@ -231,14 +231,14 @@ func (hs *clientHandshakeStateGM) doFullHandshake() error {
 		}
 
 		if !c.config.InsecureSkipVerify {
-			opts := x509.VerifyOptions{
+			opts := smx509.VerifyOptions{
 				Roots:         c.config.RootCAs,
 				CurrentTime:   c.config.time(),
 				DNSName:       c.config.ServerName,
-				Intermediates: x509.NewCertPool(),
+				Intermediates: smx509.NewCertPool(),
 			}
 			if opts.Roots == nil {
-				opts.Roots = x509.NewCertPool()
+				opts.Roots = smx509.NewCertPool()
 			}
 
 			for _, rootca := range getCAs() {
@@ -636,14 +636,14 @@ findCert:
 			// node, or if chain.Leaf was nil
 			if j != 0 || x509Cert == nil {
 				var err error
-				if x509Cert, err = x509.ParseCertificate(cert); err != nil {
+				if x509Cert, err = smx509.ParseCertificate(cert); err != nil {
 					c.sendAlert(alertInternalError)
 					return nil, errors.New("tls: failed to parse client certificate #" + strconv.Itoa(i) + ": " + err.Error())
 				}
 			}
 
 			switch {
-			case x509Cert.PublicKeyAlgorithm == x509.SM2:
+			case x509Cert.PublicKeyAlgorithm == smx509.SM2:
 			default:
 				continue findCert
 			}

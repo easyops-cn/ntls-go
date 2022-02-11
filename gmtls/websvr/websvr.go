@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 
 	"github.com/tjfoc/gmsm/gmtls"
-	x509 "github.com/tjfoc/gmsm/internal/smx509"
+	"github.com/tjfoc/gmsm/internal/smx509"
 )
 
 const (
@@ -81,7 +81,7 @@ func loadServerMutualTLCPAuthConfig() (*gmtls.Config, error) {
 	}
 
 	// 信任的根证书
-	certPool := x509.NewCertPool()
+	certPool := smx509.NewCertPool()
 	cacert, err := ioutil.ReadFile(SM2CaCertPath)
 	if err != nil {
 		return nil, err
@@ -110,7 +110,7 @@ func loadAutoSwitchConfigClientAuth() (*gmtls.Config, error) {
 // 获取 客户端服务端双向身份认证 配置
 func bothAuthConfig() (*gmtls.Config, error) {
 	// 信任的根证书
-	certPool := x509.NewCertPool()
+	certPool := smx509.NewCertPool()
 	cacert, err := ioutil.ReadFile(SM2CaCertPath)
 	if err != nil {
 		return nil, err
@@ -132,7 +132,7 @@ func bothAuthConfig() (*gmtls.Config, error) {
 // 获取 单向身份认证（只认证服务端） 配置
 func singleSideAuthConfig() (*gmtls.Config, error) {
 	// 信任的根证书
-	certPool := x509.NewCertPool()
+	certPool := smx509.NewCertPool()
 	cacert, err := ioutil.ReadFile(SM2CaCertPath)
 	if err != nil {
 		return nil, err
