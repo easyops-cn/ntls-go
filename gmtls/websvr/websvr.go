@@ -2,11 +2,11 @@ package websvr
 
 import (
 	"crypto/tls"
-	x "crypto/x509"
+	gox509 "crypto/x509"
 	"io/ioutil"
 
 	"github.com/tjfoc/gmsm/gmtls"
-	"github.com/tjfoc/gmsm/internal/smx509"
+	x509 "github.com/tjfoc/gmsm/internal/smx509"
 )
 
 const (
@@ -148,7 +148,7 @@ func singleSideAuthConfig() (*gmtls.Config, error) {
 // 获取 客户端服务端双向身份认证 配置
 func rsaBothAuthConfig() (*tls.Config, error) {
 	// 信任的根证书
-	certPool := x.NewCertPool()
+	certPool := gox509.NewCertPool()
 	cacert, err := ioutil.ReadFile(RSACaCertPath)
 	if err != nil {
 		return nil, err
@@ -170,7 +170,7 @@ func rsaBothAuthConfig() (*tls.Config, error) {
 // 获取 单向身份认证（只认证服务端） 配置
 func rsaSingleSideAuthConfig() (*tls.Config, error) {
 	// 信任的根证书
-	certPool := x.NewCertPool()
+	certPool := gox509.NewCertPool()
 	cacert, err := ioutil.ReadFile(RSACaCertPath)
 	if err != nil {
 		return nil, err

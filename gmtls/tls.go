@@ -20,7 +20,7 @@ import (
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/rsa"
-	"crypto/x509"
+	gox509 "crypto/x509"
 	"encoding/pem"
 	"errors"
 	"fmt"
@@ -29,8 +29,8 @@ import (
 	"strings"
 	"time"
 
+	x509 "github.com/tjfoc/gmsm/internal/smx509"
 	"github.com/tjfoc/gmsm/sm2"
-	X "github.com/tjfoc/gmsm/internal/smx509"
 )
 
 // Server returns a new TLS server side connection
@@ -255,7 +255,7 @@ func X509KeyPair(certPEMBlock, keyPEMBlock []byte) (Certificate, error) {
 
 	// We don't need to parse the public key for TLS, but we so do anyway
 	// to check that it looks sane and matches the private key.
-	x509Cert, err := X.ParseCertificate(cert.Certificate[0])
+	x509Cert, err := x509.ParseCertificate(cert.Certificate[0])
 	if err != nil {
 		return fail(err)
 	}
@@ -296,10 +296,10 @@ func X509KeyPair(certPEMBlock, keyPEMBlock []byte) (Certificate, error) {
 }
 
 func parsePrivateKey(der []byte) (crypto.PrivateKey, error) {
-	if key, err := x509.ParsePKCS1PrivateKey(der); err == nil {
+	if key, err := gox509.ParsePKCS1PrivateKey(der); err == nil {
 		return key, nil
 	}
-	if key, err := x509.ParsePKCS8PrivateKey(der); err == nil {
+	if key, err := gox509.ParsePKCS8PrivateKey(der); err == nil {
 		switch key := key.(type) {
 		case *rsa.PrivateKey, *ecdsa.PrivateKey:
 			return key, nil
@@ -307,7 +307,7 @@ func parsePrivateKey(der []byte) (crypto.PrivateKey, error) {
 			return nil, errors.New("tls: found unknown private key type in PKCS#8 wrapping")
 		}
 	}
-	if key, err := X.ParsePKCS8UnecryptedPrivateKey(der); err == nil {
+	if key, err := x509.ParsePKCS8UnecryptedPrivateKey(der); err == nil {
 		return key, nil
 	}
 	return nil, errors.New("tls: failed to parse private key")

@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tjfoc/gmsm/internal/smx509"
+	x509 "github.com/tjfoc/gmsm/internal/smx509"
 
 	"github.com/tjfoc/gmsm/gmtls"
 )

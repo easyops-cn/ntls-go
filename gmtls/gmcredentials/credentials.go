@@ -26,7 +26,7 @@ import (
 	"google.golang.org/grpc/credentials"
 
 	"github.com/tjfoc/gmsm/gmtls"
-	"github.com/tjfoc/gmsm/internal/smx509"
+	x509 "github.com/tjfoc/gmsm/internal/smx509"
 )
 
 var (

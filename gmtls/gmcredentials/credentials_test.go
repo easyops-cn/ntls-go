@@ -10,7 +10,7 @@ import (
 
 	"github.com/tjfoc/gmsm/gmtls"
 	"github.com/tjfoc/gmsm/gmtls/gmcredentials/echo"
-	"github.com/tjfoc/gmsm/internal/smx509"
+	x509 "github.com/tjfoc/gmsm/internal/smx509"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
