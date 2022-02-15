@@ -1,3 +1,39 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            c4:28:a0:80:65:69:39:ef
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=Shang Hai, O=example.com, CN=example.com
+        Validity
+            Not Before: Oct 26 14:27:29 2020 GMT
+            Not After : Oct 24 14:27:29 2030 GMT
+        Subject: C=CN, ST=Shang Hai, O=example.com, CN=example.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:b1:0b:b2:e6:6f:24:84:4e:06:58:0e:61:ca:24:
+                    62:3a:ed:65:e3:11:24:29:97:c1:7f:a2:84:3e:af:
+                    97:fa:4e:b2:a9:e3:3e:60:8e:3e:2e:02:5f:ca:9f:
+                    79:70:bd:ab:54:38:78:93:1a:29:0f:22:64:42:41:
+                    21:4a:dd:fc:59
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                78:EF:54:88:B1:EB:19:CB:F0:7D:D9:6E:8D:6D:67:AB:8A:81:1C:AD
+            X509v3 Authority Key Identifier: 
+                keyid:78:EF:54:88:B1:EB:19:CB:F0:7D:D9:6E:8D:6D:67:AB:8A:81:1C:AD
+
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Key Usage: critical
+                Digital Signature, Certificate Sign, CRL Sign
+    Signature Algorithm: SM2-with-SM3
+         30:45:02:20:46:fe:9b:8b:41:5a:16:29:4c:33:75:69:67:d3:
+         06:2e:33:c1:0b:8d:90:fe:03:98:af:63:98:4c:b5:ed:e9:ef:
+         02:21:00:c7:d9:c1:7d:9a:a8:c1:89:24:5a:7a:34:90:a5:64:
+         d1:30:43:f5:89:4c:99:9b:d2:89:f2:ef:74:38:7f:bb:52
 -----BEGIN CERTIFICATE-----
 MIIB9DCCAZqgAwIBAgIJAMQooIBlaTnvMAoGCCqBHM9VAYN1ME0xCzAJBgNVBAYT
 AkNOMRIwEAYDVQQIDAlTaGFuZyBIYWkxFDASBgNVBAoMC2V4YW1wbGUuY29tMRQw

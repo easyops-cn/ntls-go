@@ -1,3 +1,46 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 4096 (0x1000)
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=Shang Hai, O=example.com, CN=example.com
+        Validity
+            Not Before: Oct 26 14:27:29 2020 GMT
+            Not After : Oct 26 14:27:29 2021 GMT
+        Subject: C=CN, ST=Shang Hai, O=example.com, CN=test.example.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:aa:18:39:0c:f5:4d:ae:c2:f6:91:71:e0:73:a8:
+                    59:ad:41:32:e6:85:06:96:b0:6b:40:e9:00:43:e2:
+                    39:59:d1:5a:20:d7:71:d5:1c:48:53:5d:b9:da:25:
+                    8b:1f:56:3a:31:20:ad:19:19:d2:88:83:32:bb:81:
+                    25:1b:55:e2:e9
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Server
+            Netscape Comment: 
+                OpenSSL Generated Server Certificate
+            X509v3 Subject Key Identifier: 
+                59:EC:0B:28:69:97:5B:91:48:34:DA:8A:9E:AF:1B:B2:F3:AC:8E:96
+            X509v3 Authority Key Identifier: 
+                keyid:78:EF:54:88:B1:EB:19:CB:F0:7D:D9:6E:8D:6D:67:AB:8A:81:1C:AD
+                DirName:/C=CN/ST=Shang Hai/O=example.com/CN=example.com
+                serial:C4:28:A0:80:65:69:39:EF
+
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+    Signature Algorithm: SM2-with-SM3
+         30:44:02:20:67:c3:a0:4c:c4:21:88:bc:51:6e:2f:78:be:89:
+         86:cd:65:b0:21:3e:24:db:d6:40:78:64:b2:77:3b:72:6e:98:
+         02:20:5c:0d:91:bb:1d:1d:5b:7a:f4:15:2f:22:f8:84:b4:08:
+         60:e0:7d:53:aa:44:25:a5:c5:90:61:30:9b:cf:78:89
 -----BEGIN CERTIFICATE-----
 MIICqjCCAlGgAwIBAgICEAAwCgYIKoEcz1UBg3UwTTELMAkGA1UEBhMCQ04xEjAQ
 BgNVBAgMCVNoYW5nIEhhaTEUMBIGA1UECgwLZXhhbXBsZS5jb20xFDASBgNVBAMM

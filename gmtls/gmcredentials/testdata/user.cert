@@ -1,3 +1,44 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 4096 (0x1000)
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=Shang Hai, O=example.com, CN=example.com
+        Validity
+            Not Before: Oct 26 14:27:29 2020 GMT
+            Not After : Oct 26 14:27:29 2021 GMT
+        Subject: C=CN, ST=Shang Hai, O=example.com, CN=test.example.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:e8:9d:6b:df:37:20:38:2f:8e:1d:84:e9:97:5c:
+                    db:80:4c:69:e5:c3:01:5b:b7:1a:0d:56:6b:3e:16:
+                    22:30:ef:23:f9:34:49:07:99:b8:4c:02:38:80:36:
+                    fa:f1:dd:6d:c1:85:3b:57:99:d6:16:72:53:0a:ce:
+                    be:b1:c1:de:78
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Client, S/MIME
+            Netscape Comment: 
+                OpenSSL Generated Client Certificate
+            X509v3 Subject Key Identifier: 
+                F8:BE:51:64:3F:31:02:37:47:D0:51:EE:A0:0A:54:C7:2E:FD:6F:A1
+            X509v3 Authority Key Identifier: 
+                keyid:78:EF:54:88:B1:EB:19:CB:F0:7D:D9:6E:8D:6D:67:AB:8A:81:1C:AD
+
+            X509v3 Key Usage: critical
+                Digital Signature, Non Repudiation, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication, E-mail Protection
+    Signature Algorithm: SM2-with-SM3
+         30:44:02:20:7a:00:43:c3:89:6a:40:82:1c:7d:ed:b4:47:c8:
+         fe:07:b8:bd:06:d4:31:f6:f4:83:8c:be:3b:9c:d4:40:6e:6a:
+         02:20:58:a9:3e:09:b4:17:21:ca:5e:1d:85:14:04:00:e1:37:
+         c3:2b:e8:1e:41:87:54:4c:3b:51:e8:09:c2:0d:94:93
 -----BEGIN CERTIFICATE-----
 MIICVDCCAfugAwIBAgICEAAwCgYIKoEcz1UBg3UwTTELMAkGA1UEBhMCQ04xEjAQ
 BgNVBAgMCVNoYW5nIEhhaTEUMBIGA1UECgwLZXhhbXBsZS5jb20xFDASBgNVBAMM
