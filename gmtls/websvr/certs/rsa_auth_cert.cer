@@ -1,3 +1,60 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 202106032309457943 (0x2ce065d96c4d417)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=CN, ST=浙江, L=杭州, O=测试CA
+        Validity
+            Not Before: Jun  3 15:09:45 2021 GMT
+            Not After : May 30 06:54:58 2031 GMT
+        Subject: C=CN, ST=浙江, L=杭州, CN=*
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:e9:36:56:f3:7f:07:e5:14:be:80:dd:9b:15:59:
+                    4c:0e:99:40:7f:c1:65:f0:f2:00:28:f7:b2:c5:42:
+                    6c:d1:b0:66:59:67:8d:b6:f9:1a:82:c1:03:ed:da:
+                    a5:0e:86:35:8e:69:e6:5c:d9:a0:02:3e:09:1f:74:
+                    ee:0f:41:8e:4e:1f:f6:ca:3d:37:3f:7b:c8:3b:b8:
+                    90:6c:c5:3d:f5:90:12:a5:80:6f:74:7f:1c:0f:c8:
+                    a5:74:b2:2d:67:02:5d:ca:d8:3d:ba:7c:70:56:d3:
+                    c4:c2:2d:0c:33:bd:46:9c:09:e3:8b:bf:9e:97:64:
+                    e5:36:a0:89:42:4b:fd:47:47:de:10:ef:f4:87:3c:
+                    4a:f9:dc:0c:1e:39:48:fd:fb:68:dc:d5:ac:d8:ca:
+                    8b:a3:de:65:b0:cd:4a:1d:b0:56:e9:96:e4:bb:f0:
+                    fa:b2:85:2c:32:88:45:59:c8:03:38:ac:42:b5:6b:
+                    7a:70:c4:0d:71:da:c1:5e:36:27:71:44:8d:0d:aa:
+                    f1:92:30:54:6c:c7:58:17:e2:e0:f9:fa:93:7c:9d:
+                    f4:60:20:d4:73:02:c1:aa:64:a0:f3:4d:72:e6:c0:
+                    22:8d:3b:62:07:07:24:c4:9b:00:a2:01:1b:6a:7f:
+                    44:a0:6c:dc:fb:15:ac:1c:62:7b:be:e2:cb:98:d3:
+                    46:9d
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Non Repudiation, Key Encipherment, Data Encipherment, Key Agreement
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Authority Key Identifier: 
+                keyid:E4:83:CC:D6:90:03:AB:CB:11:F5:5A:69:E2:5F:53:DC:EF:37:E4:A9
+
+    Signature Algorithm: sha256WithRSAEncryption
+         83:2a:0a:7e:ee:8b:de:46:9e:bf:06:1b:d4:b8:65:69:47:a5:
+         49:12:e2:9b:a3:13:20:3d:c5:fa:1c:54:17:e2:e1:39:16:12:
+         99:93:fd:db:e6:13:21:7e:c3:65:e5:9a:5d:87:e8:d7:85:13:
+         07:d9:d5:af:96:b6:ee:1c:f5:33:41:87:46:72:35:6a:af:cd:
+         78:d8:b3:8d:03:6f:44:99:98:ea:a8:15:c8:50:8f:0a:76:a7:
+         86:ac:77:84:7a:29:53:4c:ac:e0:35:ca:9e:3e:01:25:79:87:
+         bd:87:a0:f0:89:6a:fd:96:0f:63:c2:a2:69:bd:10:3f:ba:0e:
+         06:c6:ba:f1:f6:3b:ff:c9:a1:f1:5d:6e:a3:41:67:7f:1b:a9:
+         78:21:ac:9c:0e:15:fb:12:7c:77:71:29:7a:b8:4d:a0:f9:68:
+         9f:c2:65:53:22:4c:bc:84:f1:fd:62:42:1f:e6:5e:07:ef:0e:
+         b9:48:8a:fd:73:c0:4c:3a:f0:74:5d:c2:73:0a:66:e4:2a:b3:
+         c5:18:8b:cd:9a:f2:81:01:7f:6f:64:10:f4:1e:15:8a:c6:39:
+         0e:40:10:69:7a:b9:32:52:71:bc:5f:03:62:60:db:e8:49:2f:
+         47:95:f0:6a:11:25:bd:80:57:e7:c6:3f:47:2f:82:b5:4c:07:
+         91:8b:7c:a8
 -----BEGIN CERTIFICATE-----
 MIIDUTCCAjmgAwIBAgIIAs4GXZbE1BcwDQYJKoZIhvcNAQELBQAwQjELMAkGA1UE
 BhMCQ04xDzANBgNVBAgMBua1meaxnzEPMA0GA1UEBwwG5p2t5beeMREwDwYDVQQK
