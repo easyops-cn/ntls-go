@@ -1,3 +1,38 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 202105301836247943 (0x2ce05b3832c3387)
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=浙江, L=杭州, O=测试CA
+        Validity
+            Not Before: May 30 10:36:24 2021 GMT
+            Not After : May 30 06:55:02 2031 GMT
+        Subject: C=CN, ST=浙江, L=杭州, O=测试公司, CN=localhost
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:06:34:50:4b:99:25:f0:83:2a:72:00:59:67:ea:
+                    a9:60:69:5f:9a:e8:7d:51:69:30:6b:a4:5d:76:72:
+                    2b:98:f9:b9:da:f5:ec:01:5d:b0:1d:33:6c:18:3c:
+                    1c:6a:f2:27:d9:7e:5f:d3:9e:0b:d7:f1:30:2a:ac:
+                    dc:31:f2:9a:ef
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Non Repudiation
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Subject Key Identifier: 
+                9A:39:EB:4F:5A:A9:52:50:0F:24:23:85:12:C6:6E:D0:F0:0B:85:45
+            X509v3 Authority Key Identifier: 
+                keyid:91:D3:D7:A6:F9:7B:77:FC:79:5D:CB:D2:32:AC:BB:40:04:B0:F8:FF
+
+    Signature Algorithm: SM2-with-SM3
+         30:45:02:20:16:13:cd:a5:5d:a3:6d:2e:53:4e:2c:09:6e:ce:
+         52:54:a5:49:e8:76:90:d0:d7:6d:6d:81:7e:5f:66:72:95:c1:
+         02:21:00:aa:48:77:ee:80:ba:6a:2b:a9:6d:10:41:c8:1a:3e:
+         bc:0f:dc:ec:89:79:dd:57:3c:bc:6f:39:89:0c:99:27:53
 -----BEGIN CERTIFICATE-----
 MIICAzCCAamgAwIBAgIIAs4Fs4MsM4cwCgYIKoEcz1UBg3UwQjELMAkGA1UEBhMC
 Q04xDzANBgNVBAgMBua1meaxnzEPMA0GA1UEBwwG5p2t5beeMREwDwYDVQQKDAjm
