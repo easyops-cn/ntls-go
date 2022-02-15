@@ -1,3 +1,46 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 4096 (0x1000)
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=Shang Hai, O=example.com, CN=example.com
+        Validity
+            Not Before: Oct 26 14:27:29 2020 GMT
+            Not After : Oct 26 14:27:29 2021 GMT
+        Subject: C=CN, ST=Shang Hai, O=example.com, CN=test.example.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:ff:45:3a:51:3f:26:76:02:a6:8d:97:71:0e:f9:
+                    8c:e0:19:fe:75:96:b8:98:aa:1c:29:ec:e7:c3:0f:
+                    e4:85:e6:35:2a:b9:26:a8:0b:62:f9:d7:36:c7:f4:
+                    5b:42:46:41:8c:25:6d:3e:90:17:ab:67:5e:dd:f3:
+                    a8:7b:73:19:4c
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Server
+            Netscape Comment: 
+                OpenSSL Generated Server Certificate
+            X509v3 Subject Key Identifier: 
+                09:5B:39:A5:3B:78:8F:81:00:BC:3C:30:AA:81:04:99:4E:06:8E:13
+            X509v3 Authority Key Identifier: 
+                keyid:78:EF:54:88:B1:EB:19:CB:F0:7D:D9:6E:8D:6D:67:AB:8A:81:1C:AD
+                DirName:/C=CN/ST=Shang Hai/O=example.com/CN=example.com
+                serial:C4:28:A0:80:65:69:39:EF
+
+            X509v3 Key Usage: critical
+                Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+    Signature Algorithm: SM2-with-SM3
+         30:45:02:20:3e:df:1c:d3:30:5a:b2:2a:b7:4f:70:15:71:38:
+         f1:dc:fd:d6:f9:b8:01:08:bd:16:54:0d:89:a3:c5:69:db:90:
+         02:21:00:b3:86:5e:6e:3d:58:8d:97:e0:fa:4e:60:f8:50:1a:
+         2c:29:2c:a1:be:a5:de:be:ee:2f:76:e6:51:cd:63:90:3d
 -----BEGIN CERTIFICATE-----
 MIICqzCCAlGgAwIBAgICEAAwCgYIKoEcz1UBg3UwTTELMAkGA1UEBhMCQ04xEjAQ
 BgNVBAgMCVNoYW5nIEhhaTEUMBIGA1UECgwLZXhhbXBsZS5jb20xFDASBgNVBAMM
