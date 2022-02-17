@@ -1,0 +1,49 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            48:a8:96:d2:ec:b3:c0:ea:e9:d0:66:ed:d9:1f:8b:bc
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=广东省, L=深圳市, O=某某科技（深圳）有限公司
+        Validity
+            Not Before: Feb 17 01:35:08 2022 GMT
+            Not After : Feb 17 01:35:08 2032 GMT
+        Subject: C=CN, ST=广东省, L=深圳市, O=某某科技（深圳）有限公司
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:11:47:07:f1:83:6c:47:96:6d:55:d8:0b:34:c4:
+                    18:c4:9d:b3:57:76:8c:05:2f:81:71:e5:df:50:b4:
+                    14:e2:ef:0c:56:c5:96:97:c0:37:ea:12:b9:7c:1d:
+                    3f:84:59:83:fc:e3:ad:30:0c:a1:c5:2b:12:5c:a6:
+                    9a:78:18:ba:14
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Certificate Sign
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication, TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Subject Key Identifier: 
+                7B:1D:1F:4C:C0:51:43:41:85:04:E7:73:DE:CC:4D:A4:72:6B:7F:23
+    Signature Algorithm: SM2-with-SM3
+         30:45:02:20:5b:98:db:a1:77:a8:bf:6f:63:ed:3b:3c:88:a3:
+         80:20:ca:cf:c6:cf:b9:07:3a:93:b2:47:4e:64:98:be:4d:24:
+         02:21:00:b1:ef:4c:11:c7:4a:c3:43:00:25:d4:af:72:8b:02:
+         ad:70:85:96:b5:98:fe:18:df:9f:39:e8:e9:98:72:16:2e
+-----BEGIN CERTIFICATE-----
+MIICJzCCAc2gAwIBAgIQSKiW0uyzwOrp0Gbt2R+LvDAKBggqgRzPVQGDdTBkMQsw
+CQYDVQQGEwJDTjESMBAGA1UECAwJ5bm/5Lic55yBMRIwEAYDVQQHDAnmt7HlnLPl
+uIIxLTArBgNVBAoMJOafkOafkOenkeaKgO+8iOa3seWcs++8ieaciemZkOWFrOWP
+uDAeFw0yMjAyMTcwMTM1MDhaFw0zMjAyMTcwMTM1MDhaMGQxCzAJBgNVBAYTAkNO
+MRIwEAYDVQQIDAnlub/kuJznnIExEjAQBgNVBAcMCea3seWcs+W4gjEtMCsGA1UE
+Cgwk5p+Q5p+Q56eR5oqA77yI5rex5Zyz77yJ5pyJ6ZmQ5YWs5Y+4MFkwEwYHKoZI
+zj0CAQYIKoEcz1UBgi0DQgAEEUcH8YNsR5ZtVdgLNMQYxJ2zV3aMBS+BceXfULQU
+4u8MVsWWl8A36hK5fB0/hFmD/OOtMAyhxSsSXKaaeBi6FKNhMF8wDgYDVR0PAQH/
+BAQDAgKEMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8E
+BTADAQH/MB0GA1UdDgQWBBR7HR9MwFFDQYUE53PezE2kcmt/IzAKBggqgRzPVQGD
+dQNIADBFAiBbmNuhd6i/b2PtOzyIo4Agys/Gz7kHOpOyR05kmL5NJAIhALHvTBHH
+SsNDACXUr3KLAq1whZa1mP4Y35856OmYchYu
+-----END CERTIFICATE-----

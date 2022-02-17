@@ -16,13 +16,14 @@ const (
 	RSACaCertPath   = "./certs/RSA_CA.cer"
 	RSAAuthCertPath = "./certs/rsa_auth_cert.cer"
 	RSAAuthKeyPath  = "./certs/rsa_auth_key.pem"
-	SM2CaCertPath   = "./certs/SM2_CA.cer"
-	SM2AuthCertPath = "./certs/sm2_auth_cert.cer"
-	SM2AuthKeyPath  = "./certs/sm2_auth_key.pem"
-	sm2SignCertPath = "./certs/sm2_sign_cert.cer"
-	sm2SignKeyPath  = "./certs/sm2_sign_key.pem"
-	sm2EncCertPath  = "./certs/sm2_enc_cert.cer"
-	sm2EncKeyPath   = "./certs/sm2_enc_key.pem"
+
+	SM2CaCertPath   = "./test_certs/sm2_ca.crt"
+	SM2AuthCertPath = "./test_certs/sm2_client_sign.crt"
+	SM2AuthKeyPath  = "./test_certs/sm2_client_sign.key"
+	sm2SignCertPath = "./test_certs/sm2_server_sign.crt"
+	sm2SignKeyPath  = "./test_certs/sm2_server_sign.key"
+	sm2EncCertPath  = "./test_certs/sm2_server_enc.crt"
+	sm2EncKeyPath   = "./test_certs/sm2_server_enc.key"
 )
 
 // RSA配置

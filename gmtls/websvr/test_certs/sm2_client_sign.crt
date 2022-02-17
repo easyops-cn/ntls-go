@@ -1,0 +1,47 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            d3:90:be:66:df:f8:a1:a3:a6:45:95:d6:5d:34:26:44
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=广东省, L=深圳市, O=某某科技（深圳）有限公司
+        Validity
+            Not Before: Feb 17 01:35:08 2022 GMT
+            Not After : Feb 17 01:35:08 2032 GMT
+        Subject: C=CN, ST=广东省, L=深圳市, O=某某科技（深圳）有限公司
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:a9:22:e1:c7:b8:45:c8:a7:49:5d:31:2c:7a:a8:
+                    07:1f:02:c2:56:cd:fc:e2:85:6a:31:52:06:c4:39:
+                    d2:5e:19:ad:f3:2b:09:4f:8a:33:4c:da:34:a6:fc:
+                    4d:69:b2:75:b5:21:93:cd:99:5e:ec:45:ca:1d:0c:
+                    63:08:22:19:30
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication, TLS Web Server Authentication
+            X509v3 Subject Alternative Name: 
+                DNS:localhost, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1
+    Signature Algorithm: SM2-with-SM3
+         30:46:02:21:00:b6:47:8f:82:07:38:35:14:4e:e4:82:50:b6:
+         c8:2c:3b:a5:42:dd:29:5d:0c:1f:66:06:de:06:75:25:6f:6b:
+         93:02:21:00:c2:e0:f5:42:5a:48:ee:fb:ea:ec:3b:3e:7d:47:
+         2e:14:47:c7:73:70:d7:8d:86:32:c5:a7:f6:76:26:a3:49:a4
+-----BEGIN CERTIFICATE-----
+MIICJzCCAcygAwIBAgIRANOQvmbf+KGjpkWV1l00JkQwCgYIKoEcz1UBg3UwZDEL
+MAkGA1UEBhMCQ04xEjAQBgNVBAgMCeW5v+S4nOecgTESMBAGA1UEBwwJ5rex5Zyz
+5biCMS0wKwYDVQQKDCTmn5Dmn5Dnp5HmioDvvIjmt7HlnLPvvInmnInpmZDlhazl
+j7gwHhcNMjIwMjE3MDEzNTA4WhcNMzIwMjE3MDEzNTA4WjBkMQswCQYDVQQGEwJD
+TjESMBAGA1UECAwJ5bm/5Lic55yBMRIwEAYDVQQHDAnmt7HlnLPluIIxLTArBgNV
+BAoMJOafkOafkOenkeaKgO+8iOa3seWcs++8ieaciemZkOWFrOWPuDBZMBMGByqG
+SM49AgEGCCqBHM9VAYItA0IABKki4ce4RcinSV0xLHqoBx8CwlbN/OKFajFSBsQ5
+0l4ZrfMrCU+KM0zaNKb8TWmydbUhk82ZXuxFyh0MYwgiGTCjXzBdMA4GA1UdDwEB
+/wQEAwIHgDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwLAYDVR0RBCUw
+I4IJbG9jYWxob3N0hwR/AAABhxAAAAAAAAAAAAAAAAAAAAABMAoGCCqBHM9VAYN1
+A0kAMEYCIQC2R4+CBzg1FE7kglC2yCw7pULdKV0MH2YG3gZ1JW9rkwIhAMLg9UJa
+SO776uw7Pn1HLhRHx3Nw142GMsWn9nYmo0mk
+-----END CERTIFICATE-----

@@ -29,14 +29,14 @@ func bootHttpServer(t *testing.T) {
 // 启动GM HTTPS测试服务器
 func bootGMHTTPSServer(t *testing.T) {
 	sigCert, err := LoadX509KeyPair(
-		"websvr/certs/sm2_sign_cert.cer",
-		"websvr/certs/sm2_sign_key.pem")
+		"websvr/test_certs/sm2_server_sign.crt",
+		"websvr/test_certs/sm2_server_sign.key")
 	if err != nil {
 		t.Fatal(err)
 	}
 	encCert, err := LoadX509KeyPair(
-		"websvr/certs/sm2_enc_cert.cer",
-		"websvr/certs/sm2_enc_key.pem")
+		"websvr/test_certs/sm2_server_enc.crt",
+		"websvr/test_certs/sm2_server_enc.key")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -68,20 +68,20 @@ func bootGMHTTPSServer(t *testing.T) {
 // 启动GM HTTPS测试服务器 双向身份认证
 func bootGMAuthHTTPSServer(t *testing.T) {
 	sigCert, err := LoadX509KeyPair(
-		"websvr/certs/sm2_sign_cert.cer",
-		"websvr/certs/sm2_sign_key.pem")
+		"websvr/test_certs/sm2_server_sign.crt",
+		"websvr/test_certs/sm2_server_sign.key")
 	if err != nil {
 		t.Fatal(err)
 	}
 	encCert, err := LoadX509KeyPair(
-		"websvr/certs/sm2_enc_cert.cer",
-		"websvr/certs/sm2_enc_key.pem")
+		"websvr/test_certs/sm2_server_enc.crt",
+		"websvr/test_certs/sm2_server_enc.key")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	certPool := smx509.NewCertPool()
-	cacert, err := ioutil.ReadFile("websvr/certs/SM2_CA.cer")
+	cacert, err := ioutil.ReadFile("websvr/test_certs/sm2_ca.crt")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -145,7 +145,7 @@ func TestNewHTTPSClient2(t *testing.T) {
 	time.Sleep(time.Second)
 	// 信任的根证书
 
-	config, err := createClientGMTLSConfig("", "", []string{"websvr/certs/SM2_CA.cer"})
+	config, err := createClientGMTLSConfig("", "", []string{"websvr/test_certs/sm2_ca.crt"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -172,7 +172,7 @@ func TestNewHTTPSClient3(t *testing.T) {
 	*/
 	time.Sleep(time.Second)
 
-	config, err := createClientGMTLSConfig("websvr/certs/sm2_auth_key.pem", "websvr/certs/sm2_auth_cert.cer", []string{"websvr/certs/SM2_CA.cer"})
+	config, err := createClientGMTLSConfig("websvr/test_certs/sm2_client_sign.key", "websvr/test_certs/sm2_client_sign.crt", []string{"websvr/test_certs/sm2_ca.crt"})
 	if err != nil {
 		t.Fatal(err)
 	}

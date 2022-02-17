@@ -1,0 +1,47 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            bc:41:0f:cb:78:4a:78:2d:6f:c3:7d:2d:49:73:5f:77
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=广东省, L=深圳市, O=某某科技（深圳）有限公司
+        Validity
+            Not Before: Feb 17 01:35:08 2022 GMT
+            Not After : Feb 17 01:35:08 2032 GMT
+        Subject: C=CN, ST=广东省, L=深圳市, O=某某科技（深圳）有限公司
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:0f:92:91:c2:0f:ce:02:5f:18:52:80:ad:f9:45:
+                    fe:8d:a0:8a:16:db:23:b7:82:ae:f3:f6:5b:90:55:
+                    93:b8:26:a3:1b:70:c1:fc:30:0c:ac:36:ff:d1:40:
+                    f9:33:2c:7a:f6:f1:6e:90:83:e8:be:93:d0:77:d8:
+                    a3:83:37:55:91
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication, TLS Web Server Authentication
+            X509v3 Subject Alternative Name: 
+                DNS:localhost, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1
+    Signature Algorithm: SM2-with-SM3
+         30:44:02:20:48:7e:fb:e2:ef:69:5d:49:af:0f:39:91:64:70:
+         4a:bb:1a:8c:ee:e8:1b:98:5f:cf:7e:ac:78:34:4f:62:f1:5c:
+         02:20:08:c0:16:8c:32:e7:70:71:96:3d:79:ac:3a:34:90:01:
+         6b:5c:5a:5b:19:1d:53:6e:d7:84:50:f0:f2:5e:69:ae
+-----BEGIN CERTIFICATE-----
+MIICJTCCAcygAwIBAgIRALxBD8t4Sngtb8N9LUlzX3cwCgYIKoEcz1UBg3UwZDEL
+MAkGA1UEBhMCQ04xEjAQBgNVBAgMCeW5v+S4nOecgTESMBAGA1UEBwwJ5rex5Zyz
+5biCMS0wKwYDVQQKDCTmn5Dmn5Dnp5HmioDvvIjmt7HlnLPvvInmnInpmZDlhazl
+j7gwHhcNMjIwMjE3MDEzNTA4WhcNMzIwMjE3MDEzNTA4WjBkMQswCQYDVQQGEwJD
+TjESMBAGA1UECAwJ5bm/5Lic55yBMRIwEAYDVQQHDAnmt7HlnLPluIIxLTArBgNV
+BAoMJOafkOafkOenkeaKgO+8iOa3seWcs++8ieaciemZkOWFrOWPuDBZMBMGByqG
+SM49AgEGCCqBHM9VAYItA0IABA+SkcIPzgJfGFKArflF/o2gihbbI7eCrvP2W5BV
+k7gmoxtwwfwwDKw2/9FA+TMsevbxbpCD6L6T0HfYo4M3VZGjXzBdMA4GA1UdDwEB
+/wQEAwIHgDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwLAYDVR0RBCUw
+I4IJbG9jYWxob3N0hwR/AAABhxAAAAAAAAAAAAAAAAAAAAABMAoGCCqBHM9VAYN1
+A0cAMEQCIEh+++LvaV1Jrw85kWRwSrsajO7oG5hfz36seDRPYvFcAiAIwBaMMudw
+cZY9eaw6NJABa1xaWxkdU27XhFDw8l5prg==
+-----END CERTIFICATE-----

@@ -1,0 +1,47 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            49:2f:50:90:58:0c:8b:01:1d:2e:54:58:55:c9:78:b1
+        Signature Algorithm: SM2-with-SM3
+        Issuer: C=CN, ST=广东省, L=深圳市, O=某某科技（深圳）有限公司
+        Validity
+            Not Before: Feb 17 01:35:08 2022 GMT
+            Not After : Feb 17 01:35:08 2032 GMT
+        Subject: C=CN, ST=广东省, L=深圳市, O=某某科技（深圳）有限公司
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:52:3a:7b:14:2e:d3:93:ec:ca:d9:73:0a:26:b4:
+                    07:4d:e3:e0:2c:6d:32:da:a8:ab:7f:fd:82:d3:33:
+                    03:c8:90:f1:c8:d8:7e:df:bb:7a:9f:62:c7:3b:d2:
+                    7d:49:33:34:8e:07:d2:49:35:c1:bf:57:4a:b2:fe:
+                    ea:6b:39:3e:bb
+                ASN1 OID: SM2
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Key Encipherment, Data Encipherment, Key Agreement
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication, TLS Web Server Authentication
+            X509v3 Subject Alternative Name: 
+                DNS:localhost, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1
+    Signature Algorithm: SM2-with-SM3
+         30:45:02:20:35:4d:81:c8:83:29:98:9a:95:02:99:8c:24:86:
+         b5:fa:f7:a2:d1:bc:89:89:ed:e2:26:12:e3:d9:78:1e:89:fd:
+         02:21:00:a5:b4:a4:af:47:e5:c2:f8:9f:fa:cc:de:82:8e:b1:
+         d2:eb:78:6a:5f:8a:72:e1:b7:e3:82:a7:5d:44:ce:d7:00
+-----BEGIN CERTIFICATE-----
+MIICJTCCAcugAwIBAgIQSS9QkFgMiwEdLlRYVcl4sTAKBggqgRzPVQGDdTBkMQsw
+CQYDVQQGEwJDTjESMBAGA1UECAwJ5bm/5Lic55yBMRIwEAYDVQQHDAnmt7HlnLPl
+uIIxLTArBgNVBAoMJOafkOafkOenkeaKgO+8iOa3seWcs++8ieaciemZkOWFrOWP
+uDAeFw0yMjAyMTcwMTM1MDhaFw0zMjAyMTcwMTM1MDhaMGQxCzAJBgNVBAYTAkNO
+MRIwEAYDVQQIDAnlub/kuJznnIExEjAQBgNVBAcMCea3seWcs+W4gjEtMCsGA1UE
+Cgwk5p+Q5p+Q56eR5oqA77yI5rex5Zyz77yJ5pyJ6ZmQ5YWs5Y+4MFkwEwYHKoZI
+zj0CAQYIKoEcz1UBgi0DQgAEUjp7FC7Tk+zK2XMKJrQHTePgLG0y2qirf/2C0zMD
+yJDxyNh+37t6n2LHO9J9STM0jgfSSTXBv1dKsv7qazk+u6NfMF0wDgYDVR0PAQH/
+BAQDAgM4MB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAsBgNVHREEJTAj
+gglsb2NhbGhvc3SHBH8AAAGHEAAAAAAAAAAAAAAAAAAAAAEwCgYIKoEcz1UBg3UD
+SAAwRQIgNU2ByIMpmJqVApmMJIa1+vei0byJie3iJhLj2Xgeif0CIQCltKSvR+XC
++J/6zN6CjrHS63hqX4py4bfjgqddRM7XAA==
+-----END CERTIFICATE-----

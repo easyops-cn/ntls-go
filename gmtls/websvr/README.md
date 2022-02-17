@@ -221,7 +221,7 @@ import (
 func main() {
 	// 1. 提供根证书链
 	certPool := x509.NewCertPool()
-	cacert, err := ioutil.ReadFile("websvr/certs/SM2_CA.cer")
+	cacert, err := ioutil.ReadFile("websvr/test_certs/sm2_ca.crt")
 	if err != nil {
 		panic(err)
 	}
@@ -263,13 +263,13 @@ import (
 func main() {
 	// 1. 提供根证书链
 	certPool := x509.NewCertPool()
-	cacert, err := ioutil.ReadFile("websvr/certs/SM2_CA.cer")
+	cacert, err := ioutil.ReadFile("websvr/test_certs/sm2_ca.crt")
 	if err != nil {
 		panic(err)
 	}
 	certPool.AppendCertsFromPEM(cacert)
 	// 2. 提供客户端认证证书、密钥对。
-	clientAuthCert, err := gmtls.LoadX509KeyPair("websvr/certs/sm2_auth_cert.cer", "websvr/certs/sm2_auth_key.pem")
+	clientAuthCert, err := gmtls.LoadX509KeyPair("websvr/test_certs/sm2_client_sign.crt", "websvr/test_certs/sm2_client_sign.key")
 	// 3. 构造HTTP客户端。
 	httpClient := gmtls.NewAuthHTTPSClient(certPool, &clientAuthCert)
 	// 4. 调用API访问HTTPS。
