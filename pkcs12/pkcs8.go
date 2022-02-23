@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/emmansun/gmsm/sm2"
 )
 
 type pkcs8 struct { // Duplicated from x509 package
@@ -47,7 +47,7 @@ func oidFromNamedCurve(curve elliptic.Curve) (asn1.ObjectIdentifier, bool) { // 
 		return oidNamedCurveP384, true
 	case elliptic.P521():
 		return oidNamedCurveP521, true
-	case sm2.P256Sm2():
+	case sm2.P256():
 		return oidNamedCurveP256SM2, true
 	}
 
@@ -64,7 +64,7 @@ func namedCurveFromOID(oid asn1.ObjectIdentifier) elliptic.Curve {
 	case oid.Equal(oidNamedCurveP521):
 		return elliptic.P521()
 	case oid.Equal(oidNamedCurveP256SM2):
-		return sm2.P256Sm2()
+		return sm2.P256()
 	}
 	return nil
 }

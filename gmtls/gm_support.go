@@ -7,6 +7,7 @@ package gmtls
 import (
 	"crypto"
 	"crypto/cipher"
+	"crypto/ecdsa"
 	"crypto/hmac"
 	"encoding/pem"
 	"errors"
@@ -15,11 +16,10 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/emmansun/gmsm/sm2"
+	"github.com/emmansun/gmsm/sm3"
 	"github.com/emmansun/gmsm/sm4"
-
-	"github.com/tjfoc/gmsm/sm2"
-	"github.com/tjfoc/gmsm/sm3"
-	"github.com/tjfoc/gmsm/x509"
+	"github.com/emmansun/gmsm/smx509"
 )
 
 const VersionGMSSL = 0x0101 // GM/T 0024-2014
@@ -81,17 +81,17 @@ AwIhAPKX+rTHK3IHmZ3MHU2ajoJcGwq0h7aWpcpljF6cld4r
 	},
 }
 
-var certCAs []*x509.Certificate
+var certCAs []*smx509.Certificate
 
 var initonce sync.Once
 
-func getCAs() []*x509.Certificate {
+func getCAs() []*smx509.Certificate {
 	// mod by syl remove pre insert ca certs
 	return nil
 	initonce.Do(func() {
 		for _, pemca := range pemCAs {
 			block, _ := pem.Decode([]byte(pemca.pem))
-			ca, err := x509.ParseCertificate(block.Bytes)
+			ca, err := smx509.ParseCertificate(block.Bytes)
 			if err != nil {
 				panic(err)
 			}
@@ -387,7 +387,7 @@ func getKey(keyPEMBlock []byte) (*pem.Block, error) {
 func matchKeyCert(keyDERBlock *pem.Block, certDERBlock []byte) (crypto.PrivateKey, error) {
 	// We don't need to parse the public key for TLS, but we so do anyway
 	// to check that it looks sane and matches the private key.
-	x509Cert, err := x509.ParseCertificate(certDERBlock)
+	x509Cert, err := smx509.ParseCertificate(certDERBlock)
 	if err != nil {
 		return nil, err
 	}
@@ -398,7 +398,7 @@ func matchKeyCert(keyDERBlock *pem.Block, certDERBlock []byte) (crypto.PrivateKe
 	}
 
 	switch pub := x509Cert.PublicKey.(type) {
-	case *sm2.PublicKey:
+	case *ecdsa.PublicKey:
 		priv, ok := privateKey.(*sm2.PrivateKey)
 		if !ok {
 			return nil, errors.New("tls: private key type does not match public key type")
@@ -464,13 +464,14 @@ func GMX509KeyPairsSingle(certPEMBlock, keyPEMBlock []byte) (Certificate, error)
 	if len(certs) == 0 {
 		return certificate, errors.New("tls: failed to find any sign cert PEM data in cert input")
 	}
-	checkCert, err := x509.ParseCertificate(certs[0])
+	checkCert, err := smx509.ParseCertificate(certs[0])
 	if err != nil {
 		return certificate, errors.New("tls: failed to parse certificate")
 	}
 
 	//if cert is not for GM, use default X509KeyPair
-	if checkCert.PublicKeyAlgorithm != x509.SM2 {
+	// TODO
+	if checkCert.PublicKeyAlgorithm != smx509.ECDSA {
 		return X509KeyPair(certPEMBlock, keyPEMBlock)
 	}
 

@@ -25,9 +25,9 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/tjfoc/gmsm/x509"
-
 	"golang.org/x/crypto/curve25519"
+
+	"github.com/emmansun/gmsm/smx509"
 )
 
 var errClientKeyExchange = errors.New("tls: invalid ClientKeyExchange message")
@@ -73,11 +73,11 @@ func (ka rsaKeyAgreement) processClientKeyExchange(config *Config, cert *Certifi
 	return preMasterSecret, nil
 }
 
-func (ka rsaKeyAgreement) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *x509.Certificate, skx *serverKeyExchangeMsg) error {
+func (ka rsaKeyAgreement) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *smx509.Certificate, skx *serverKeyExchangeMsg) error {
 	return errors.New("tls: unexpected ServerKeyExchange")
 }
 
-func (ka rsaKeyAgreement) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *x509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
+func (ka rsaKeyAgreement) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *smx509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
 	preMasterSecret := make([]byte, 48)
 	preMasterSecret[0] = byte(clientHello.vers >> 8)
 	preMasterSecret[1] = byte(clientHello.vers)
@@ -302,7 +302,7 @@ func (ka *ecdheKeyAgreement) processClientKeyExchange(config *Config, cert *Cert
 	return preMasterSecret, nil
 }
 
-func (ka *ecdheKeyAgreement) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *x509.Certificate, skx *serverKeyExchangeMsg) error {
+func (ka *ecdheKeyAgreement) processServerKeyExchange(config *Config, clientHello *clientHelloMsg, serverHello *serverHelloMsg, cert *smx509.Certificate, skx *serverKeyExchangeMsg) error {
 	if len(skx.key) < 4 {
 		return errServerKeyExchange
 	}
@@ -369,7 +369,7 @@ func (ka *ecdheKeyAgreement) processServerKeyExchange(config *Config, clientHell
 	return verifyHandshakeSignature(sigType, cert.PublicKey, hashFunc, digest, sig)
 }
 
-func (ka *ecdheKeyAgreement) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *x509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
+func (ka *ecdheKeyAgreement) generateClientKeyExchange(config *Config, clientHello *clientHelloMsg, cert *smx509.Certificate) ([]byte, *clientKeyExchangeMsg, error) {
 	if ka.curveid == 0 {
 		return nil, nil, errors.New("tls: missing ServerKeyExchange message")
 	}

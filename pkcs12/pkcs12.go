@@ -22,8 +22,8 @@ import (
 	"errors"
 	"io/ioutil"
 
-	"github.com/tjfoc/gmsm/sm2"
-	x "github.com/tjfoc/gmsm/x509"
+	"github.com/emmansun/gmsm/sm2"
+	"github.com/emmansun/gmsm/smx509"
 )
 
 var (
@@ -215,7 +215,7 @@ func convertAttribute(attribute *pkcs12Attribute) (key, value string, err error)
 }
 
 // DecodeAll extracts all certificates and a private key from pfxData.
-func DecodeAll(pfxData []byte, password string) (privateKey interface{}, certificate []*x.Certificate, err error) {
+func DecodeAll(pfxData []byte, password string) (privateKey interface{}, certificate []*smx509.Certificate, err error) {
 	encodedPassword, err := bmpString(password)
 	if err != nil {
 		return nil, nil, err
@@ -242,7 +242,7 @@ func DecodeAll(pfxData []byte, password string) (privateKey interface{}, certifi
 			if err != nil {
 				return nil, nil, err
 			}
-			certs, err := x.ParseCertificates(certsData)
+			certs, err := smx509.ParseCertificates(certsData)
 			if err != nil {
 				return nil, nil, err
 			}
@@ -417,7 +417,7 @@ func getSafeContents(p12Data, password []byte) (bags []safeBag, updatedPassword 
 // and contains the certificates, and another that is unencrypted and contains the private key shrouded with 3DES.
 // The private key bag and the end-entity certificate bag have the LocalKeyId attribute set to the SHA-1 fingerprint
 // of the end-entity certificate.
-func Encode(privateKey interface{}, certificate *x.Certificate, caCerts []*x509.Certificate, password string) (pfxData []byte, err error) {
+func Encode(privateKey interface{}, certificate *smx509.Certificate, caCerts []*x509.Certificate, password string) (pfxData []byte, err error) {
 	encodedPassword, err := bmpString(password)
 	if err != nil {
 		return nil, err
@@ -558,7 +558,7 @@ func makeSafeContents(bags []safeBag, password []byte) (ci contentInfo, err erro
 	}
 	return
 }
-func SM2P12Encrypt(certificate *x.Certificate, pwd string, priv *sm2.PrivateKey, fileName string) error {
+func SM2P12Encrypt(certificate *smx509.Certificate, pwd string, priv *sm2.PrivateKey, fileName string) error {
 	pfxDataNew, err := Encode(priv, certificate, nil, pwd)
 	if err != nil {
 		return err
@@ -566,7 +566,8 @@ func SM2P12Encrypt(certificate *x.Certificate, pwd string, priv *sm2.PrivateKey,
 	err = ioutil.WriteFile(fileName, pfxDataNew, 0666)
 	return err
 }
-func SM2P12Decrypt(fileName string, pwd string) (*x.Certificate, *sm2.PrivateKey, error) {
+
+func SM2P12Decrypt(fileName string, pwd string) (*smx509.Certificate, *sm2.PrivateKey, error) {
 	pfxData, _ := ioutil.ReadFile(fileName)
 	pv, cer, err := DecodeAll(pfxData, pwd)
 	if err != nil {
@@ -575,15 +576,17 @@ func SM2P12Decrypt(fileName string, pwd string) (*x.Certificate, *sm2.PrivateKey
 	switch k := pv.(type) {
 	case *ecdsa.PrivateKey:
 		switch k.Curve {
-		case sm2.P256Sm2():
-			sm2pub := &sm2.PublicKey{
+		case sm2.P256():
+			sm2pub := &ecdsa.PublicKey{
 				Curve: k.Curve,
 				X:     k.X,
 				Y:     k.Y,
 			}
 			sm2Pri := &sm2.PrivateKey{
-				PublicKey: *sm2pub,
-				D:         k.D,
+				PrivateKey: ecdsa.PrivateKey{
+					PublicKey: *sm2pub,
+					D:         k.D,
+				},
 			}
 			if !k.IsOnCurve(k.X, k.Y) {
 				return nil, nil, errors.New("error while validating SM2 private key: %v")

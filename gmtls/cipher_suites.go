@@ -25,9 +25,9 @@ import (
 	"crypto/sha256"
 	"hash"
 
-	"github.com/tjfoc/gmsm/x509"
-
 	"golang.org/x/crypto/chacha20poly1305"
+
+	"github.com/emmansun/gmsm/smx509"
 )
 
 // a keyAgreement implements the client and server side of a TLS key agreement
@@ -45,8 +45,8 @@ type keyAgreement interface {
 
 	// This method may not be called if the server doesn't send a
 	// ServerKeyExchange message.
-	processServerKeyExchange(*Config, *clientHelloMsg, *serverHelloMsg, *x509.Certificate, *serverKeyExchangeMsg) error
-	generateClientKeyExchange(*Config, *clientHelloMsg, *x509.Certificate) ([]byte, *clientKeyExchangeMsg, error)
+	processServerKeyExchange(*Config, *clientHelloMsg, *serverHelloMsg, *smx509.Certificate, *serverKeyExchangeMsg) error
+	generateClientKeyExchange(*Config, *clientHelloMsg, *smx509.Certificate) ([]byte, *clientKeyExchangeMsg, error)
 }
 
 const (

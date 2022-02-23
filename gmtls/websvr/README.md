@@ -214,7 +214,7 @@ package main
 
 import (
 	"github.com/tjfoc/gmsm/gmtls"
-	"github.com/tjfoc/gmsm/x509"
+	"github.com/emmansun/gmsm/smx509"
 	"io/ioutil"
 )
 
@@ -256,7 +256,7 @@ package main
 
 import (
 	"github.com/tjfoc/gmsm/gmtls"
-	"github.com/tjfoc/gmsm/x509"
+	"github.com/emmansun/gmsm/smx509"
 	"io/ioutil"
 )
 
@@ -320,7 +320,7 @@ package main
 
 import (
 	"github.com/tjfoc/gmsm/gmtls"
-	"github.com/tjfoc/gmsm/x509"
+	"github.com/emmansun/gmsm/smx509"
 	"io/ioutil"
 	"log"
 )
