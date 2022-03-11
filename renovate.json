@@ -2,6 +2,9 @@
   "extends": [
     "config:base"
   ],
+  "postUpdateOptions": [
+    "gomodTidy"
+  ],
   "ignoreDeps": [
     "github.com/tjfoc/gmsm"
   ]
