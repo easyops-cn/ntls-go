@@ -1,4 +1,7 @@
 
+# Deprecated
+use https://github.com/Trisia/gotlcp instead
+
 # gmsm
 GM SM2/3/4 library based on Golang
 =======
