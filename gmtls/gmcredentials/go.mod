@@ -1,6 +1,6 @@
 module github.com/tjfoc/gmsm/gmtls/gmcredentials
 
-go 1.15
+go 1.19
 
 require (
 	github.com/golang/protobuf v1.5.2

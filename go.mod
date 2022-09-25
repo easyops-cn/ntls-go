@@ -1,6 +1,6 @@
 module github.com/tjfoc/gmsm
 
-go 1.15
+go 1.19
 
 require (
 	github.com/emmansun/gmsm v0.11.5
